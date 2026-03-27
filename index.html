@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -9,502 +8,492 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 :root {
- --gelb: #FFD93D;
- --rot: #FF6B6B;
- --gruen: #6BCB77;
- --blau: #4D96FF;
- --bg:   #0d1117;
- --bg2:  #161b27;
- --bg3:  #1e2638;
- --glass: rgba(255,255,255,0.07);
- --border: rgba(255,255,255,0.13);
- --text: #e8eeff;
- --dim:  rgba(180,200,255,0.55);
- --r: 16px;
+  --gelb: #FFD93D;
+  --rot: #FF6B6B;
+  --gruen: #6BCB77;
+  --blau: #4D96FF;
+  --bg:   #0d1117;
+  --bg2:  #161b27;
+  --bg3:  #1e2638;
+  --glass: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.13);
+  --text: #e8eeff;
+  --dim:  rgba(180,200,255,0.55);
+  --r: 16px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body {
- width: 100%; height: 100vh; overflow: hidden;
- background: var(--bg);
- color: var(--text);
- font-family: 'Nunito', sans-serif;
- -webkit-font-smoothing: antialiased;
+  width: 100%; height: 100vh; overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ── HINTERGRUND ── */
 .bg-glow {
-position: fixed; inset: 0; z-index: 0; pointer-events: none;
-background:
-radial-gradient(ellipse 55% 45% at 10% 15%, rgba(77,150,255,0.22) 0%, transparent 65%),
-radial-gradient(ellipse 45% 55% at 90% 85%, rgba(255,107,107,0.16) 0%, transparent 65%),
-radial-gradient(ellipse 35% 35% at 55% 50%, rgba(107,203,119,0.09) 0%, transparent 65%);
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 10% 15%, rgba(77,150,255,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 90% 85%, rgba(255,107,107,0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 35% at 55% 50%, rgba(107,203,119,0.09) 0%, transparent 65%);
 }
 
 /* ── SCREENS ── */
 .screen {
-position: fixed; inset: 0; z-index: 1;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-overflow-y: auto;
-transition: opacity 0.35s ease, transform 0.35s ease;
+  position: fixed; inset: 0; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow-y: auto;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .screen.hidden { opacity: 0; pointer-events: none; transform: scale(0.97); }
 
 /* ═══════════════════════════════════════
-START SCREEN
+   START SCREEN
 ═══════════════════════════════════════ */
 #startScreen { padding: 16px; gap: 14px; }
 
 .logo-row { display: flex; align-items: center; gap: 14px; }
-.logo-em  { font-size: clamp(38px,6vw,58px); animation: float 3s ease-in-out infinite; }
+.logo-em  { font-size: clamp(38px,6vw,58px); animation: float 3s ease-in-out infinite; }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 
 .game-title {
-font-family: ‘Fredoka One’, cursive;
-font-size: clamp(28px,5vw,46px);
-line-height: 1.0;
-background: linear-gradient(120deg,#FFD93D,#FF6B6B 38%,#4D96FF 72%,#6BCB77);
-background-size: 260%;
--webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-animation: grad 5s ease infinite;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(28px,5vw,46px);
+  line-height: 1.0;
+  background: linear-gradient(120deg,#FFD93D,#FF6B6B 38%,#4D96FF 72%,#6BCB77);
+  background-size: 260%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: grad 5s ease infinite;
 }
 @keyframes grad { 0%{background-position:0%} 50%{background-position:100%} 100%{background-position:0%} }
 .game-sub {
-font-size: clamp(9px,1.4vw,12px);
-color: var(–dim); font-weight: 700;
-letter-spacing: 2.5px; text-transform: uppercase; margin-top: 4px;
+  font-size: clamp(9px,1.4vw,12px);
+  color: var(--dim); font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; margin-top: 4px;
 }
 
 .start-main {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 14px;
-width: 100%; max-width: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%; max-width: 700px;
 }
 @media (max-width: 480px) { .start-main { grid-template-columns: 1fr; } }
 
 /* Karten */
 .card {
-background: var(–bg2);
-border: 1px solid var(–border);
-border-radius: var(–r);
-padding: clamp(14px,2.2vw,20px);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: clamp(14px,2.2vw,20px);
 }
 .card-title {
-font-family: ‘Fredoka One’, cursive;
-font-size: clamp(14px,2.3vw,18px);
-color: var(–gelb);
-margin-bottom: 12px; text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(14px,2.3vw,18px);
+  color: var(--gelb);
+  margin-bottom: 12px; text-align: center;
 }
 
 /* Spieler-Anzahl */
 .count-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 12px; }
 .cnt {
-width: clamp(44px,7.5vw,56px); height: clamp(44px,7.5vw,56px);
-border-radius: 12px; border: 2px solid var(–border);
-background: var(–bg3); color: var(–text);
-font-family: ‘Fredoka One’, cursive; font-size: clamp(18px,3vw,24px);
-cursor: pointer; transition: all 0.2s;
+  width: clamp(44px,7.5vw,56px); height: clamp(44px,7.5vw,56px);
+  border-radius: 12px; border: 2px solid var(--border);
+  background: var(--bg3); color: var(--text);
+  font-family: 'Fredoka One', cursive; font-size: clamp(18px,3vw,24px);
+  cursor: pointer; transition: all 0.2s;
 }
-.cnt.active { background: var(–blau); border-color: var(–blau); transform: scale(1.1); box-shadow: 0 0 22px rgba(77,150,255,0.5); }
-.cnt:hover:not(.active) { background: var(–bg3); border-color: rgba(255,255,255,0.3); }
+.cnt.active { background: var(--blau); border-color: var(--blau); transform: scale(1.1); box-shadow: 0 0 22px rgba(77,150,255,0.5); }
+.cnt:hover:not(.active) { background: var(--bg3); border-color: rgba(255,255,255,0.3); }
 .gender-btn { width: auto !important; padding: 0 clamp(8px,1.5vw,14px); font-size: clamp(12px,1.8vw,15px) !important; }
 
 .pnames { display: flex; flex-direction: column; gap: 9px; }
-.prow   { display: flex; align-items: center; gap: 9px; }
-.pav    { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.prow   { display: flex; align-items: center; gap: 9px; }
+.pav    { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .prow input {
-flex: 1; background: var(–bg3); border: 1.5px solid var(–border);
-border-radius: 10px; padding: 9px 12px;
-color: var(–text); font-family: ‘Nunito’, sans-serif;
-font-size: clamp(13px,2vw,15px); font-weight: 800; outline: none;
+  flex: 1; background: var(--bg3); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 9px 12px;
+  color: var(--text); font-family: 'Nunito', sans-serif;
+  font-size: clamp(13px,2vw,15px); font-weight: 800; outline: none;
 }
-.prow input:focus { border-color: var(–blau); background: rgba(77,150,255,0.12); }
+.prow input:focus { border-color: var(--blau); background: rgba(77,150,255,0.12); }
 
 /* Legende */
 .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-.leg-item { display: flex; align-items: center; gap: 8px; font-size: clamp(11px,1.7vw,13px); font-weight: 800; color: var(–text); }
-.leg-dot  { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+.leg-item { display: flex; align-items: center; gap: 8px; font-size: clamp(11px,1.7vw,13px); font-weight: 800; color: var(--text); }
+.leg-dot  { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
 .info-lines { display: flex; flex-direction: column; gap: 5px; }
-.info-line  { font-size: clamp(12px,1.8vw,14px); color: var(–dim); font-weight: 700; line-height: 1.4; }
+.info-line  { font-size: clamp(12px,1.8vw,14px); color: var(--dim); font-weight: 700; line-height: 1.4; }
 
 /* Start-Button */
 .btn-start {
-background: linear-gradient(135deg,#4D96FF,#6BCB77);
-color: white; font-family: ‘Fredoka One’, cursive;
-font-size: clamp(18px,3vw,24px);
-padding: clamp(13px,2vw,17px) clamp(32px,6vw,60px);
-border-radius: var(–r); border: none; cursor: pointer;
-transition: all 0.2s; box-shadow: 0 6px 26px rgba(77,150,255,0.38);
-width: 100%; max-width: 700px;
+  background: linear-gradient(135deg,#4D96FF,#6BCB77);
+  color: white; font-family: 'Fredoka One', cursive;
+  font-size: clamp(18px,3vw,24px);
+  padding: clamp(13px,2vw,17px) clamp(32px,6vw,60px);
+  border-radius: var(--r); border: none; cursor: pointer;
+  transition: all 0.2s; box-shadow: 0 6px 26px rgba(77,150,255,0.38);
+  width: 100%; max-width: 700px;
 }
-.btn-start:hover  { transform: translateY(-2px); box-shadow: 0 10px 34px rgba(77,150,255,0.5); }
+.btn-start:hover  { transform: translateY(-2px); box-shadow: 0 10px 34px rgba(77,150,255,0.5); }
 .btn-start:active { transform: scale(0.97); }
 
 /* ═══════════════════════════════════════
-GAME SCREEN
+   GAME SCREEN
 ═══════════════════════════════════════ */
 #gameScreen { padding: 0; overflow: hidden; justify-content: flex-start; align-items: stretch; }
 
 .game-wrap {
-width: 100%; height: 100%;
-display: grid;
-grid-template-columns: 1fr min(34%, 300px);
-grid-template-rows: auto 1fr;
-padding: clamp(10px,1.8vw,18px);
-gap: clamp(8px,1.4vw,14px);
+  width: 100%; height: 100%;
+  display: grid;
+  grid-template-columns: 1fr min(34%, 300px);
+  grid-template-rows: auto 1fr;
+  padding: clamp(10px,1.8vw,18px);
+  gap: clamp(8px,1.4vw,14px);
 }
 
 /* Header */
 .g-head {
-grid-column: 1 / 3;
-display: flex; align-items: center; justify-content: space-between;
+  grid-column: 1 / 3;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .g-title {
-font-family: ‘Fredoka One’, cursive;
-font-size: clamp(16px,2.8vw,24px);
-background: linear-gradient(90deg,#FFD93D,#FF6B6B);
--webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(16px,2.8vw,24px);
+  background: linear-gradient(90deg,#FFD93D,#FF6B6B);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .btn-rules {
-background: var(–bg2); border: 1px solid var(–border);
-border-radius: 10px; padding: clamp(6px,1vw,10px) clamp(10px,1.5vw,16px);
-color: var(–dim); font-family: ‘Nunito’, sans-serif;
-font-size: clamp(11px,1.7vw,14px); font-weight: 800; cursor: pointer;
-transition: all 0.2s; white-space: nowrap;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: clamp(6px,1vw,10px) clamp(10px,1.5vw,16px);
+  color: var(--dim); font-family: 'Nunito', sans-serif;
+  font-size: clamp(11px,1.7vw,14px); font-weight: 800; cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
 }
-.btn-rules:hover { color: var(–text); background: var(–bg3); }
+.btn-rules:hover { color: var(--text); background: var(--bg3); }
 
 /* Spalten */
-.g-left  { grid-column: 1; display: flex; flex-direction: column; gap: clamp(8px,1.2vw,12px); min-height: 0; }
+.g-left  { grid-column: 1; display: flex; flex-direction: column; gap: clamp(8px,1.2vw,12px); min-height: 0; }
 .g-right { grid-column: 2; display: flex; flex-direction: column; gap: clamp(8px,1.2vw,12px); min-height: 0; }
 
 /* Spieler-Chips */
 .chips { display: flex; gap: clamp(6px,1vw,10px); }
 .chip {
-flex: 1; min-width: 0;
-display: flex; flex-direction: column; align-items: center; gap: 3px;
-background: var(–bg2); border: 1.5px solid var(–border);
-border-radius: var(–r); padding: clamp(8px,1.2vw,12px) 6px;
-position: relative; transition: all 0.3s;
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: clamp(8px,1.2vw,12px) 6px;
+  position: relative; transition: all 0.3s;
 }
-.chip.active { border-color: var(–gelb); background: rgba(255,217,61,0.08); box-shadow: 0 0 18px rgba(255,217,61,0.28); }
-.chip.active::after { content:‘▼’; position:absolute; top:-17px; font-size:11px; color:var(–gelb); animation:bounce .8s infinite; }
+.chip.active { border-color: var(--gelb); background: rgba(255,217,61,0.08); box-shadow: 0 0 18px rgba(255,217,61,0.28); }
+.chip.active::after { content:'▼'; position:absolute; top:-17px; font-size:11px; color:var(--gelb); animation:bounce .8s infinite; }
 @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
 .chip-av { font-size: clamp(18px,3vw,26px); }
-.chip-nm { font-size: clamp(9px,1.4vw,12px); font-weight: 800; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(–text); }
-.chip-sc { font-family: ‘Fredoka One’, cursive; font-size: clamp(16px,2.5vw,22px); color: var(–gelb); }
-.chip-pause { position:absolute; top:3px; right:3px; font-size:9px; background:var(–rot); border-radius:50%; width:15px; height:15px; display:flex; align-items:center; justify-content:center; }
-.pbar      { background: rgba(255,255,255,0.1); border-radius:50px; height:4px; overflow:hidden; width:100%; margin-top:2px; }
+.chip-nm { font-size: clamp(9px,1.4vw,12px); font-weight: 800; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.chip-sc { font-family: 'Fredoka One', cursive; font-size: clamp(16px,2.5vw,22px); color: var(--gelb); }
+.chip-pause { position:absolute; top:3px; right:3px; font-size:9px; background:var(--rot); border-radius:50%; width:15px; height:15px; display:flex; align-items:center; justify-content:center; }
+.pbar      { background: rgba(255,255,255,0.1); border-radius:50px; height:4px; overflow:hidden; width:100%; margin-top:2px; }
 .pbar-fill { height:100%; border-radius:50px; transition:width .5s; }
 
 /* Spielfeld */
 .board-wrap {
-background: var(–bg2); border: 1px solid var(–border);
-border-radius: var(–r); padding: clamp(10px,1.5vw,16px);
-flex: 1; min-height: 0; display: flex; flex-direction: column;
-overflow: hidden;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: clamp(10px,1.5vw,16px);
+  flex: 1; min-height: 0; display: flex; flex-direction: column;
+  overflow: hidden;
 }
 .board-lbl {
-font-family: ‘Fredoka One’, cursive;
-font-size: clamp(10px,1.4vw,13px);
-color: var(–dim); text-align: center; margin-bottom: 8px;
-letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(10px,1.4vw,13px);
+  color: var(--dim); text-align: center; margin-bottom: 8px;
+  letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0;
 }
 .board {
-display: flex;
-flex-direction: column;
-gap: clamp(6px,1.2vw,14px);
-flex: 1; min-height: 0; justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px,1.2vw,14px);
+  flex: 1; min-height: 0; justify-content: center;
 }
 .board-row {
-display: flex;
-flex-direction: row;
-gap: clamp(4px,0.8vw,8px);
-width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: clamp(4px,0.8vw,8px);
+  width: 100%;
 }
 .field {
-flex: 1;
-min-width: 0;
-aspect-ratio: 1;
-border-radius: clamp(6px,1vw,12px);
-display: flex; align-items: center; justify-content: center;
-position: relative; transition: transform 0.2s; border: 2px solid transparent;
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 1;
+  border-radius: clamp(6px,1vw,12px);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; transition: transform 0.2s; border: 2px solid transparent;
 }
-.fnum  { font-size:clamp(13px,1.8vw,20px); font-family:‘Fredoka One’,cursive; font-weight:900; line-height:1; }
+.fnum  { font-size:clamp(13px,1.8vw,20px); font-family:'Fredoka One',cursive; font-weight:900; line-height:1; }
 .field.start .fnum, .field.ziel .fnum { font-size:clamp(11px,1.4vw,16px); font-weight:900; letter-spacing:0.5px; }
 .field.start { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; box-shadow:0 0 12px rgba(102,126,234,0.6); }
-.field.ziel  { background:linear-gradient(135deg,#f093fb,#f5576c); color:#fff; box-shadow:0 0 12px rgba(245,87,108,0.6); }
+.field.ziel  { background:linear-gradient(135deg,#f093fb,#f5576c); color:#fff; box-shadow:0 0 12px rgba(245,87,108,0.6); }
 .ficon { font-size: clamp(24px,4vw,40px); line-height:1; }
-.field.gelb  { background:var(–gelb); color:#333; }
-.field.rot   { background:var(–rot);  color:#fff; }
-.field.gruen { background:var(–gruen);color:#1a3a1e; }
-.field.blau  { background:var(–blau); color:#fff; }
+.field.gelb  { background:var(--gelb); color:#333; }
+.field.rot   { background:var(--rot);  color:#fff; }
+.field.gruen { background:var(--gruen);color:#1a3a1e; }
+.field.blau  { background:var(--blau); color:#fff; }
 .field.active-field { transform:scale(1.18); box-shadow:0 0 16px rgba(255,255,255,0.7); border-color:white; z-index:2; }
 .token { position:absolute; width:clamp(10px,1.5vw,14px); height:clamp(10px,1.5vw,14px); border-radius:50%; border:2px solid white; bottom:2px; right:2px; font-size:clamp(6px,1vw,9px); display:flex; align-items:center; justify-content:center; box-shadow:0 2px 5px rgba(0,0,0,.6); }
 
 /* Rechte Sidebar */
 .cur-card {
-background: linear-gradient(135deg,rgba(77,150,255,0.14),rgba(107,203,119,0.14));
-border: 1.5px solid rgba(77,150,255,0.32);
-border-radius: var(–r); padding: clamp(12px,1.8vw,18px);
-display: flex; flex-direction: column; align-items: center; gap: clamp(6px,1vw,10px);
-text-align: center;
+  background: linear-gradient(135deg,rgba(77,150,255,0.14),rgba(107,203,119,0.14));
+  border: 1.5px solid rgba(77,150,255,0.32);
+  border-radius: var(--r); padding: clamp(12px,1.8vw,18px);
+  display: flex; flex-direction: column; align-items: center; gap: clamp(6px,1vw,10px);
+  text-align: center;
 }
 .cur-av { font-size: clamp(36px,6vw,54px); }
-.cur-nm { font-family:‘Fredoka One’,cursive; font-size:clamp(18px,3vw,26px); color:var(–gelb); }
-.cur-st { font-size:clamp(11px,1.6vw,13px); color:var(–dim); font-weight:700; }
+.cur-nm { font-family:'Fredoka One',cursive; font-size:clamp(18px,3vw,26px); color:var(--gelb); }
+.cur-st { font-size:clamp(11px,1.6vw,13px); color:var(--dim); font-weight:700; }
 
 .extra {
-display:none; background:linear-gradient(135deg,#FFD93D,#FF6B6B);
-color:white; border-radius:50px;
-padding:clamp(7px,1vw,10px) clamp(12px,2vw,18px);
-font-family:‘Fredoka One’,cursive; font-size:clamp(12px,2vw,16px);
-text-align:center; animation:glow 1s ease infinite alternate;
+  display:none; background:linear-gradient(135deg,#FFD93D,#FF6B6B);
+  color:white; border-radius:50px;
+  padding:clamp(7px,1vw,10px) clamp(12px,2vw,18px);
+  font-family:'Fredoka One',cursive; font-size:clamp(12px,2vw,16px);
+  text-align:center; animation:glow 1s ease infinite alternate;
 }
 .extra.show { display:block; }
 @keyframes glow { from{box-shadow:0 0 8px rgba(255,217,61,.4)} to{box-shadow:0 0 24px rgba(255,107,107,.8)} }
 
 .dice-card {
-background: var(–bg2); border: 1px solid var(–border);
-border-radius: var(–r); padding: clamp(12px,2vw,20px);
-display: flex; flex-direction: column; align-items: center; gap: clamp(8px,1.2vw,14px);
-flex: 1;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: clamp(12px,2vw,20px);
+  display: flex; flex-direction: column; align-items: center; gap: clamp(8px,1.2vw,14px);
+  flex: 1;
 }
 .dice {
-width: clamp(64px,10vw,90px); height: clamp(64px,10vw,90px);
-background: white; border-radius: clamp(14px,2.2vw,22px);
-display: flex; align-items: center; justify-content: center;
-font-size: clamp(36px,6vw,52px);
-box-shadow: 0 8px 28px rgba(0,0,0,.5);
-cursor: pointer; user-select: none; transition: transform .15s;
+  width: clamp(64px,10vw,90px); height: clamp(64px,10vw,90px);
+  background: white; border-radius: clamp(14px,2.2vw,22px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(36px,6vw,52px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.5);
+  cursor: pointer; user-select: none; transition: transform .15s;
 }
 .dice:hover { transform:scale(1.06); }
 .dice.rolling { animation:roll .55s ease; }
 @keyframes roll { 0%{transform:rotate(0)scale(1)} 25%{transform:rotate(-18deg)scale(1.12)} 50%{transform:rotate(16deg)scale(.9)} 75%{transform:rotate(-10deg)scale(1.06)} 100%{transform:rotate(0)scale(1)} }
-.dice-txt { font-family:‘Fredoka One’,cursive; font-size:clamp(12px,1.8vw,15px); color:var(–dim); text-align:center; min-height:20px; }
+.dice-txt { font-family:'Fredoka One',cursive; font-size:clamp(12px,1.8vw,15px); color:var(--dim); text-align:center; min-height:20px; }
 .btn-wurf {
-background:linear-gradient(135deg,#FFD93D,#FF6B6B);
-color:white; font-family:‘Fredoka One’,cursive;
-font-size:clamp(16px,2.5vw,22px);
-padding:clamp(12px,1.8vw,16px) 20px;
-border-radius:var(–r); border:none; cursor:pointer;
-box-shadow:0 5px 20px rgba(255,107,107,.38);
-transition:all .15s; width:100%;
+  background:linear-gradient(135deg,#FFD93D,#FF6B6B);
+  color:white; font-family:'Fredoka One',cursive;
+  font-size:clamp(16px,2.5vw,22px);
+  padding:clamp(12px,1.8vw,16px) 20px;
+  border-radius:var(--r); border:none; cursor:pointer;
+  box-shadow:0 5px 20px rgba(255,107,107,.38);
+  transition:all .15s; width:100%;
 }
-.btn-wurf:hover  { box-shadow:0 8px 28px rgba(255,107,107,.55); transform:translateY(-1px); }
+.btn-wurf:hover  { box-shadow:0 8px 28px rgba(255,107,107,.55); transform:translateY(-1px); }
 .btn-wurf:active { transform:scale(.95); }
 .btn-wurf:disabled { opacity:.4; cursor:not-allowed; transform:none; box-shadow:none; }
 
 /* ═══════════════════════════════════════
-MODAL
+   MODAL
 ═══════════════════════════════════════ */
 .modal-bg {
-position:fixed; inset:0; background:rgba(0,0,0,.75);
-display:flex; align-items:center; justify-content:center;
-z-index:100; backdrop-filter:blur(5px);
-padding:clamp(16px,3vw,40px); transition:opacity .3s;
+  position:fixed; inset:0; background:rgba(0,0,0,.75);
+  display:flex; align-items:center; justify-content:center;
+  z-index:100; backdrop-filter:blur(5px);
+  padding:clamp(16px,3vw,40px); transition:opacity .3s;
 }
 .modal-bg.hidden { opacity:0; pointer-events:none; }
 .modal-box {
-width:100%; max-width:min(640px,95vw);
-border-radius:var(–r); padding:clamp(22px,3.5vw,36px);
-box-shadow:0 20px 60px rgba(0,0,0,.6);
-max-height:90vh; overflow-y:auto;
-transform:scale(1); transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  width:100%; max-width:min(640px,95vw);
+  border-radius:var(--r); padding:clamp(22px,3.5vw,36px);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  max-height:90vh; overflow-y:auto;
+  transform:scale(1); transition:transform .4s cubic-bezier(.34,1.56,.64,1);
 }
 .modal-bg.hidden .modal-box { transform:scale(.88); }
-.modal-box.gelb  { background:linear-gradient(145deg,#FFD93D,#f5c518); color:#2a2000; }
-.modal-box.rot   { background:linear-gradient(145deg,#FF6B6B,#e84040); color:#fff; }
+.modal-box.gelb  { background:linear-gradient(145deg,#FFD93D,#f5c518); color:#2a2000; }
+.modal-box.rot   { background:linear-gradient(145deg,#FF6B6B,#e84040); color:#fff; }
 .modal-box.gruen { background:linear-gradient(145deg,#6BCB77,#45a854); color:#1a3a1e; }
-.modal-box.blau  { background:linear-gradient(145deg,#4D96FF,#1a6de0); color:#fff; }
+.modal-box.blau  { background:linear-gradient(145deg,#4D96FF,#1a6de0); color:#fff; }
 
 .mbadge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.28); border-radius:50px; padding:6px 16px; font-size:clamp(11px,1.8vw,14px); font-weight:900; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:14px; }
-.mqst   { font-family:‘Fredoka One’,cursive; font-size:clamp(17px,3vw,24px); line-height:1.35; margin-bottom:18px; }
-.aopts  { display:flex; flex-direction:column; gap:clamp(8px,1.2vw,12px); }
-.abtn   { background:rgba(255,255,255,.22); border:2px solid rgba(255,255,255,.35); border-radius:12px; padding:clamp(12px,1.8vw,16px) clamp(14px,2vw,20px); text-align:left; font-family:‘Nunito’,sans-serif; font-size:clamp(14px,2.2vw,17px); font-weight:800; cursor:pointer; transition:all .2s; color:inherit; }
+.mqst   { font-family:'Fredoka One',cursive; font-size:clamp(17px,3vw,24px); line-height:1.35; margin-bottom:18px; }
+.aopts  { display:flex; flex-direction:column; gap:clamp(8px,1.2vw,12px); }
+.abtn   { background:rgba(255,255,255,.22); border:2px solid rgba(255,255,255,.35); border-radius:12px; padding:clamp(12px,1.8vw,16px) clamp(14px,2vw,20px); text-align:left; font-family:'Nunito',sans-serif; font-size:clamp(14px,2.2vw,17px); font-weight:800; cursor:pointer; transition:all .2s; color:inherit; }
 .abtn:hover { background:rgba(255,255,255,.38); transform:translateX(3px); }
 .abtn.correct { background:rgba(50,205,50,.38); border-color:#32CD32; }
-.abtn.wrong   { background:rgba(255,0,0,.22);   border-color:#ff4444; }
+.abtn.wrong   { background:rgba(255,0,0,.22);   border-color:#ff4444; }
 .abtn:disabled { cursor:default; transform:none; }
-.adesc  { font-size:clamp(14px,2.2vw,18px); font-weight:700; line-height:1.6; background:rgba(255,255,255,.18); border-radius:12px; padding:clamp(14px,2vw,20px); margin-bottom:18px; }
-.abtns  { display:flex; gap:10px; }
-.bja    { flex:1; background:rgba(50,205,50,.28); border:2px solid #32CD32; border-radius:12px; padding:clamp(12px,1.8vw,16px); font-family:‘Fredoka One’,cursive; font-size:clamp(16px,2.5vw,21px); color:inherit; cursor:pointer; transition:all .15s; }
-.bnein  { flex:1; background:rgba(255,68,68,.28); border:2px solid #ff4444; border-radius:12px; padding:clamp(12px,1.8vw,16px); font-family:‘Fredoka One’,cursive; font-size:clamp(16px,2.5vw,21px); color:inherit; cursor:pointer; transition:all .15s; }
-.bja:hover   { background:rgba(50,205,50,.42); } .bnein:hover { background:rgba(255,68,68,.42); }
+.adesc  { font-size:clamp(14px,2.2vw,18px); font-weight:700; line-height:1.6; background:rgba(255,255,255,.18); border-radius:12px; padding:clamp(14px,2vw,20px); margin-bottom:18px; }
+.abtns  { display:flex; gap:10px; }
+.bja    { flex:1; background:rgba(50,205,50,.28); border:2px solid #32CD32; border-radius:12px; padding:clamp(12px,1.8vw,16px); font-family:'Fredoka One',cursive; font-size:clamp(16px,2.5vw,21px); color:inherit; cursor:pointer; transition:all .15s; }
+.bnein  { flex:1; background:rgba(255,68,68,.28); border:2px solid #ff4444; border-radius:12px; padding:clamp(12px,1.8vw,16px); font-family:'Fredoka One',cursive; font-size:clamp(16px,2.5vw,21px); color:inherit; cursor:pointer; transition:all .15s; }
+.bja:hover   { background:rgba(50,205,50,.42); } .bnein:hover { background:rgba(255,68,68,.42); }
 .bja:active, .bnein:active { transform:scale(.96); }
-.fb     { border-radius:12px; padding:clamp(13px,2vw,18px); margin-top:14px; font-family:‘Fredoka One’,cursive; font-size:clamp(14px,2.2vw,17px); line-height:1.4; text-align:center; display:none; }
+.fb     { border-radius:12px; padding:clamp(13px,2vw,18px); margin-top:14px; font-family:'Fredoka One',cursive; font-size:clamp(14px,2.2vw,17px); line-height:1.4; text-align:center; display:none; }
 .fb.show { display:block; animation:popIn .3s ease; }
-.fb.pos  { background:rgba(50,205,50,.28); border:2px solid #32CD32; }
-.fb.neg  { background:rgba(255,68,68,.28); border:2px solid #ff4444; }
+.fb.pos  { background:rgba(50,205,50,.28); border:2px solid #32CD32; }
+.fb.neg  { background:rgba(255,68,68,.28); border:2px solid #ff4444; }
 @keyframes popIn { 0%{transform:scale(.85);opacity:0} 100%{transform:scale(1);opacity:1} }
-.bweiter { width:100%; margin-top:14px; background:rgba(255,255,255,.28); border:2px solid rgba(255,255,255,.45); border-radius:12px; padding:clamp(13px,2vw,17px); font-family:‘Fredoka One’,cursive; font-size:clamp(17px,2.5vw,21px); color:inherit; cursor:pointer; display:none; transition:all .15s; }
+.bweiter { width:100%; margin-top:14px; background:rgba(255,255,255,.28); border:2px solid rgba(255,255,255,.45); border-radius:12px; padding:clamp(13px,2vw,17px); font-family:'Fredoka One',cursive; font-size:clamp(17px,2.5vw,21px); color:inherit; cursor:pointer; display:none; transition:all .15s; }
 .bweiter.show { display:block; animation:popIn .3s .2s ease both; }
 .bweiter:hover { background:rgba(255,255,255,.4); }
 
 /* ═══════════════════════════════════════
-REGELN
+   REGELN
 ═══════════════════════════════════════ */
 #rulesModal { position:fixed; inset:0; background:rgba(0,0,0,.82); z-index:150; display:flex; align-items:center; justify-content:center; padding:clamp(16px,3vw,40px); backdrop-filter:blur(5px); transition:opacity .3s; }
 #rulesModal.hidden { opacity:0; pointer-events:none; }
-.rules-box { background:var(–bg2); border:1px solid var(–border); border-radius:var(–r); padding:clamp(24px,3.5vw,40px); max-width:520px; width:100%; max-height:85vh; overflow-y:auto; }
-.rules-box h2 { font-family:‘Fredoka One’,cursive; font-size:clamp(20px,3vw,28px); color:var(–gelb); margin-bottom:18px; text-align:center; }
-.ri      { display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; font-size:clamp(13px,1.9vw,15px); font-weight:600; line-height:1.5; color:var(–dim); }
+.rules-box { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:clamp(24px,3.5vw,40px); max-width:520px; width:100%; max-height:85vh; overflow-y:auto; }
+.rules-box h2 { font-family:'Fredoka One',cursive; font-size:clamp(20px,3vw,28px); color:var(--gelb); margin-bottom:18px; text-align:center; }
+.ri      { display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; font-size:clamp(13px,1.9vw,15px); font-weight:600; line-height:1.5; color:var(--dim); }
 .ri-icon { font-size:clamp(16px,2.5vw,20px); flex-shrink:0; }
-.btn-ghost { background:var(–bg3); border:1.5px solid var(–border); color:var(–text); font-family:‘Fredoka One’,cursive; font-size:clamp(16px,2.5vw,20px); padding:clamp(12px,1.8vw,14px) 24px; border-radius:var(–r); cursor:pointer; width:100%; margin-top:14px; transition:all .2s; }
-.btn-ghost:hover { background:var(–glass); }
+.btn-ghost { background:var(--bg3); border:1.5px solid var(--border); color:var(--text); font-family:'Fredoka One',cursive; font-size:clamp(16px,2.5vw,20px); padding:clamp(12px,1.8vw,14px) 24px; border-radius:var(--r); cursor:pointer; width:100%; margin-top:14px; transition:all .2s; }
+.btn-ghost:hover { background:var(--glass); }
 
 /* ═══════════════════════════════════════
-WIN SCREEN
+   WIN SCREEN
 ═══════════════════════════════════════ */
 #winScreen { gap:16px; }
 .win-em { font-size:clamp(60px,12vw,96px); animation:float 2s ease-in-out infinite; }
-.win-t  { font-family:‘Fredoka One’,cursive; font-size:clamp(32px,6vw,52px); text-align:center; background:linear-gradient(135deg,#FFD93D,#6BCB77,#4D96FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.win-n  { font-family:‘Fredoka One’,cursive; font-size:clamp(40px,8vw,64px); text-align:center; color:var(–gelb); }
-.win-s  { font-size:clamp(18px,2.8vw,24px); color:var(–dim); font-weight:700; }
+.win-t  { font-family:'Fredoka One',cursive; font-size:clamp(32px,6vw,52px); text-align:center; background:linear-gradient(135deg,#FFD93D,#6BCB77,#4D96FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.win-n  { font-family:'Fredoka One',cursive; font-size:clamp(40px,8vw,64px); text-align:center; color:var(--gelb); }
+.win-s  { font-size:clamp(18px,2.8vw,24px); color:var(--dim); font-weight:700; }
 .confetti-c { position:fixed; inset:0; pointer-events:none; z-index:50; overflow:hidden; }
 .cfto { position:absolute; top:-20px; animation:fall linear forwards; }
 @keyframes fall { to{transform:translateY(110vh) rotate(720deg);opacity:0} }
 
 /* TOAST */
-.toast { position:fixed; top:16px; left:50%; transform:translateX(-50%) translateY(-80px); background:rgba(10,14,26,.97); border:1.5px solid var(–border); border-radius:50px; padding:clamp(10px,1.5vw,14px) clamp(18px,2.5vw,26px); font-family:‘Fredoka One’,cursive; font-size:clamp(13px,2vw,17px); color:white; z-index:200; transition:transform .4s cubic-bezier(.34,1.56,.64,1); backdrop-filter:blur(12px); white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,.5); }
+.toast { position:fixed; top:16px; left:50%; transform:translateX(-50%) translateY(-80px); background:rgba(10,14,26,.97); border:1.5px solid var(--border); border-radius:50px; padding:clamp(10px,1.5vw,14px) clamp(18px,2.5vw,26px); font-family:'Fredoka One',cursive; font-size:clamp(13px,2vw,17px); color:white; z-index:200; transition:transform .4s cubic-bezier(.34,1.56,.64,1); backdrop-filter:blur(12px); white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,.5); }
 .toast.show { transform:translateX(-50%) translateY(0); }
 </style>
-
 </head>
 <body>
 <div class="bg-glow"></div>
 
 <!-- ═══ START ═══ -->
-
 <div class="screen" id="startScreen">
- <div class="logo-row">
-   <span class="logo-em" id="logoEm">🤝</span>
-   <div>
-     <div class="game-title">Weg des Respekts</div>
-     <div class="game-sub">Monheim am Rhein · Sally-Perel-Preis</div>
-   </div>
- </div>
+  <div class="logo-row">
+    <span class="logo-em" id="logoEm">🤝</span>
+    <div>
+      <div class="game-title">Weg des Respekts</div>
+      <div class="game-sub">Monheim am Rhein · Sally-Perel-Preis</div>
+    </div>
+  </div>
 
- <div class="start-main">
-   <div class="card">
-     <div class="card-title">👥 Wie viele spielen?</div>
-     <div class="count-row">
-       <button class="cnt" onclick="setN(1)">1</button>
-       <button class="cnt active" onclick="setN(2)">2</button>
-       <button class="cnt" onclick="setN(3)">3</button>
-       <button class="cnt" onclick="setN(4)">4</button>
-     </div>
-     <div style="font-family:'Fredoka One',cursive;font-size:clamp(12px,2vw,14px);color:var(--dim);text-align:center;margin-bottom:8px;">👤 Emoji-Stil</div>
-     <div class="count-row" style="margin-bottom:14px;">
-       <button class="cnt gender-btn active" data-g="neutral"   onclick="setGender('neutral')"  style="font-size:clamp(14px,2.2vw,20px);">🧑 Neutral</button>
-       <button class="cnt gender-btn"        data-g="weiblich"  onclick="setGender('weiblich')" style="font-size:clamp(14px,2.2vw,20px);">👩 Weiblich</button>
-       <button class="cnt gender-btn"        data-g="maennlich" onclick="setGender('maennlich')"style="font-size:clamp(14px,2.2vw,20px);">👨 Männlich</button>
-     </div>
-     <div class="pnames" id="pnames"></div>
-   </div>
+  <div class="start-main">
+    <div class="card">
+      <div class="card-title">👥 Wie viele spielen?</div>
+      <div class="count-row">
+        <button class="cnt" onclick="setN(1)">1</button>
+        <button class="cnt active" onclick="setN(2)">2</button>
+        <button class="cnt" onclick="setN(3)">3</button>
+        <button class="cnt" onclick="setN(4)">4</button>
+      </div>
+      <div style="font-family:'Fredoka One',cursive;font-size:clamp(12px,2vw,14px);color:var(--dim);text-align:center;margin-bottom:8px;">👤 Emoji-Stil</div>
+      <div class="count-row" style="margin-bottom:14px;">
+        <button class="cnt gender-btn active" data-g="neutral"   onclick="setGender('neutral')"  style="font-size:clamp(14px,2.2vw,20px);">🧑 Neutral</button>
+        <button class="cnt gender-btn"        data-g="weiblich"  onclick="setGender('weiblich')" style="font-size:clamp(14px,2.2vw,20px);">👩 Weiblich</button>
+        <button class="cnt gender-btn"        data-g="maennlich" onclick="setGender('maennlich')"style="font-size:clamp(14px,2.2vw,20px);">👨 Männlich</button>
+      </div>
+      <div class="pnames" id="pnames"></div>
+    </div>
 
-```
-<div class="card">
- <div class="card-title">🗺️ Spielfeld-Legende</div>
- <div class="legend">
-   <div class="leg-item"><div class="leg-dot" style="background:var(--gelb)"></div>Wissen &amp; Religion</div>
-   <div class="leg-item"><div class="leg-dot" style="background:var(--rot)"></div>Soziale Situation</div>
-   <div class="leg-item"><div class="leg-dot" style="background:var(--gruen)"></div>Aktionskarte</div>
-   <div class="leg-item"><div class="leg-dot" style="background:var(--blau)"></div>Teamaufgabe</div>
- </div>
- <div class="info-lines">
-   <div class="info-line">✅ Richtig / Geschafft: <b style="color:var(--gruen)">+5 Punkte</b></div>
-   <div class="info-line">❌ Falsch / Nicht geschafft: <b style="color:var(--rot)">–5 Punkte</b></div>
-   <div class="info-line">🎁 Bei 10/20/30/40/50 Pkt: <b style="color:var(--gelb)">Extra-Wurf!</b></div>
-   <div class="info-line">🏆 Ziel: Als Erstes <b style="color:var(--gelb)">60 Punkte</b> erreichen!</div>
- </div>
-</div>
-```
+    <div class="card">
+      <div class="card-title">🗺️ Spielfeld-Legende</div>
+      <div class="legend">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--gelb)"></div>Wissen &amp; Religion</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--rot)"></div>Soziale Situation</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--gruen)"></div>Aktionskarte</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--blau)"></div>Teamaufgabe</div>
+      </div>
+      <div class="info-lines">
+        <div class="info-line">✅ Richtig / Geschafft: <b style="color:var(--gruen)">+5 Punkte</b></div>
+        <div class="info-line">❌ Falsch / Nicht geschafft: <b style="color:var(--rot)">–5 Punkte</b></div>
+        <div class="info-line">🎁 Bei 10/20/30/40/50 Pkt: <b style="color:var(--gelb)">Extra-Wurf!</b></div>
+        <div class="info-line">🏆 Ziel: Als Erstes <b style="color:var(--gelb)">60 Punkte</b> erreichen!</div>
+      </div>
+    </div>
+  </div>
 
- </div>
-
-<button class="btn-start" onclick="startGame()">🎮 Spiel starten</button>
-
+  <button class="btn-start" onclick="startGame()">🎮 Spiel starten</button>
 </div>
 
 <!-- ═══ GAME ═══ -->
-
 <div class="screen hidden" id="gameScreen">
- <div class="game-wrap">
-   <div class="g-head">
-     <div class="g-title">🤝 Weg des Respekts</div>
-     <button class="btn-rules" onclick="toggleRules()">📋 Regeln</button>
-   </div>
-   <div class="g-left">
-     <div class="chips" id="chips"></div>
-     <div class="board-wrap">
-       <div class="board-lbl">🗺️ Spielfeld — Ziel: 60 Punkte</div>
-       <div class="board" id="board"></div>
-     </div>
-   </div>
-   <div class="g-right">
-     <div class="cur-card">
-       <div class="cur-av" id="curAv" style="display:none"></div>
-       <div class="cur-nm" id="curNm">Spieler 1</div>
-       <div class="cur-st" id="curSt">Du bist dran!</div>
-       <div class="pbar" style="width:100%"><div class="pbar-fill" id="curPb" style="width:0%"></div></div>
-     </div>
-     <div class="extra" id="extra">🎲 Extra-Wurf!</div>
-     <div class="dice-card">
-       <div class="dice" id="dice" onclick="wuerfeln()">🎲</div>
-       <div class="dice-txt" id="diceTxt"></div>
-       <button class="btn-wurf" id="btnW" onclick="wuerfeln()">🎲 Würfeln!</button>
-     </div>
-   </div>
- </div>
+  <div class="game-wrap">
+    <div class="g-head">
+      <div class="g-title">🤝 Weg des Respekts</div>
+      <button class="btn-rules" onclick="toggleRules()">📋 Regeln</button>
+    </div>
+    <div class="g-left">
+      <div class="chips" id="chips"></div>
+      <div class="board-wrap">
+        <div class="board-lbl">🗺️ Spielfeld — Ziel: 60 Punkte</div>
+        <div class="board" id="board"></div>
+      </div>
+    </div>
+    <div class="g-right">
+      <div class="cur-card">
+        <div class="cur-av" id="curAv" style="display:none"></div>
+        <div class="cur-nm" id="curNm">Spieler 1</div>
+        <div class="cur-st" id="curSt">Du bist dran!</div>
+        <div class="pbar" style="width:100%"><div class="pbar-fill" id="curPb" style="width:0%"></div></div>
+      </div>
+      <div class="extra" id="extra">🎲 Extra-Wurf!</div>
+      <div class="dice-card">
+        <div class="dice" id="dice" onclick="wuerfeln()">🎲</div>
+        <div class="dice-txt" id="diceTxt"></div>
+        <button class="btn-wurf" id="btnW" onclick="wuerfeln()">🎲 Würfeln!</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ WIN ═══ -->
-
 <div class="screen hidden" id="winScreen">
- <div class="confetti-c" id="confettiC"></div>
- <div class="win-em">🏆</div>
- <div class="win-t">Gewonnen!</div>
- <div class="win-n" id="winN"></div>
- <div class="win-s" id="winS"></div>
- <button class="btn-start" onclick="resetGame()" style="margin-top:8px;max-width:340px">🔄 Nochmal spielen</button>
+  <div class="confetti-c" id="confettiC"></div>
+  <div class="win-em">🏆</div>
+  <div class="win-t">Gewonnen!</div>
+  <div class="win-n" id="winN"></div>
+  <div class="win-s" id="winS"></div>
+  <button class="btn-start" onclick="resetGame()" style="margin-top:8px;max-width:340px">🔄 Nochmal spielen</button>
 </div>
 
 <!-- ═══ MODAL ═══ -->
-
 <div class="modal-bg hidden" id="modal">
- <div class="modal-box" id="mbox">
-   <div class="mbadge" id="mbadge"></div>
-   <div class="mqst"   id="mqst"></div>
-   <div class="aopts"  id="aopts"></div>
-   <div class="adesc"  id="adesc" style="display:none"></div>
-   <div class="abtns"  id="abtns" style="display:none">
-     <button class="bja"   onclick="doAction(true)">✅ Geschafft!</button>
-     <button class="bnein" onclick="doAction(false)">❌ Nicht geschafft</button>
-   </div>
-   <div class="fb"    id="fb"></div>
-   <button class="bweiter" id="bweiter" onclick="closeModal()">Weiter →</button>
- </div>
+  <div class="modal-box" id="mbox">
+    <div class="mbadge" id="mbadge"></div>
+    <div class="mqst"   id="mqst"></div>
+    <div class="aopts"  id="aopts"></div>
+    <div class="adesc"  id="adesc" style="display:none"></div>
+    <div class="abtns"  id="abtns" style="display:none">
+      <button class="bja"   onclick="doAction(true)">✅ Geschafft!</button>
+      <button class="bnein" onclick="doAction(false)">❌ Nicht geschafft</button>
+    </div>
+    <div class="fb"    id="fb"></div>
+    <button class="bweiter" id="bweiter" onclick="closeModal()">Weiter →</button>
+  </div>
 </div>
 
 <!-- ═══ REGELN ═══ -->
-
 <div id="rulesModal" class="hidden">
- <div class="rules-box">
-   <h2>📋 Spielregeln</h2>
-   <div class="ri"><span class="ri-icon">🎲</span><span>Würfle und bewege dich vorwärts. Die Feldfarbe bestimmt deine Aufgabe.</span></div>
-   <div class="ri"><span class="ri-icon">🟡</span><span><b>Gelb:</b> Wissensfrage – Multiple-Choice-Antwort wählen.</span></div>
-   <div class="ri"><span class="ri-icon">🔴</span><span><b>Rot:</b> Soziale Situation – die richtige Reaktion wählen.</span></div>
-   <div class="ri"><span class="ri-icon">🟢</span><span><b>Grün:</b> Aktionskarte – Szene vorspielen oder Aufgabe lösen.</span></div>
-   <div class="ri"><span class="ri-icon">🔵</span><span><b>Blau:</b> Teamaufgabe – alle spielen gemeinsam mit.</span></div>
-   <div class="ri"><span class="ri-icon">✅</span><span>Richtig / Geschafft: <b>+5 Punkte</b></span></div>
-   <div class="ri"><span class="ri-icon">❌</span><span>Falsch / Nicht geschafft: <b>–5 Punkte</b></span></div>
-   <div class="ri"><span class="ri-icon">😴</span><span>Bei –5 Punkten: Eine Runde aussetzen.</span></div>
-   <div class="ri"><span class="ri-icon">🎁</span><span>Bei 10, 20, 30, 40, 50 Punkten: Extra-Wurf!</span></div>
-   <div class="ri"><span class="ri-icon">🏆</span><span>Ziel: Als Erstes 60 Punkte erreichen!</span></div>
-   <button class="btn-ghost" onclick="toggleRules()">Schließen</button>
- </div>
+  <div class="rules-box">
+    <h2>📋 Spielregeln</h2>
+    <div class="ri"><span class="ri-icon">🎲</span><span>Würfle und bewege dich vorwärts. Die Feldfarbe bestimmt deine Aufgabe.</span></div>
+    <div class="ri"><span class="ri-icon">🟡</span><span><b>Gelb:</b> Wissensfrage – Multiple-Choice-Antwort wählen.</span></div>
+    <div class="ri"><span class="ri-icon">🔴</span><span><b>Rot:</b> Soziale Situation – die richtige Reaktion wählen.</span></div>
+    <div class="ri"><span class="ri-icon">🟢</span><span><b>Grün:</b> Aktionskarte – Szene vorspielen oder Aufgabe lösen.</span></div>
+    <div class="ri"><span class="ri-icon">🔵</span><span><b>Blau:</b> Teamaufgabe – alle spielen gemeinsam mit.</span></div>
+    <div class="ri"><span class="ri-icon">✅</span><span>Richtig / Geschafft: <b>+5 Punkte</b></span></div>
+    <div class="ri"><span class="ri-icon">❌</span><span>Falsch / Nicht geschafft: <b>–5 Punkte</b></span></div>
+    <div class="ri"><span class="ri-icon">😴</span><span>Bei –5 Punkten: Eine Runde aussetzen.</span></div>
+    <div class="ri"><span class="ri-icon">🎁</span><span>Bei 10, 20, 30, 40, 50 Punkten: Extra-Wurf!</span></div>
+    <div class="ri"><span class="ri-icon">🏆</span><span>Ziel: Als Erstes 60 Punkte erreichen!</span></div>
+    <button class="btn-ghost" onclick="toggleRules()">Schließen</button>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -517,296 +506,292 @@ let AVS=AVS_SETS.neutral;
 const FBN=['#FF6B6B','#4D96FF','#6BCB77','#FFD93D'];
 
 const GELB=[
- {f:"Wie heißt die heilige Schrift des Islam?",a:["Die Tora","Die Bibel","Der Koran","Die Veden"],r:2,e:"Der Koran ist die heilige Schrift des Islam – die Offenbarungen des Propheten Mohammed."},
- {f:"Welches Fest feiern Christen als Geburtstag Jesu?",a:["Ostern","Pfingsten","Weihnachten","Epiphanie"],r:2,e:"Weihnachten am 25. Dezember erinnert an die Geburt Jesu Christi in Bethlehem."},
- {f:"In welcher Weltreligion gilt die Kuh als heiliges Tier?",a:["Buddhismus","Hinduismus","Judentum","Islam"],r:1,e:"Im Hinduismus gilt die Kuh als heiliges Tier – Symbol für Güte und Fürsorge."},
- {f:"Was ist der Ramadan?",a:["Ein Pflichtgebet","Ein heiliger Fastenmonat","Ein Wallfahrtsfest","Ein Ruhetag"],r:1,e:"Der Ramadan ist ein Fastenmonat – Zeit der inneren Einkehr, des Gebets und der Gemeinschaft."},
- {f:"Wie heißt der wöchentliche Ruhetag im Judentum?",a:["Sabbat","Ramadan","Vesak","Diwali"],r:0,e:"Der Sabbat beginnt am Freitagabend bei Sonnenuntergang und endet am Samstagabend."},
- {f:"Welches Fest ist das große Lichterfest im Hinduismus?",a:["Holi","Diwali","Eid al-Fitr","Wesak"],r:1,e:"Diwali symbolisiert den Sieg des Lichts über die Dunkelheit."},
- {f:"Welche Stadt ist die heiligste im Islam?",a:["Jerusalem","Istanbul","Mekka","Medina"],r:2,e:"Mekka ist die heiligste Stadt des Islam – Geburtsort Mohammeds und Ort der Kaaba."},
- {f:"Was beschreibt der Edle Achtfache Pfad im Buddhismus?",a:["Eine Pilgerroute","Acht Götter","Weg zur Überwindung des Leidens","Acht Schriften"],r:2,e:"Der Achtfache Pfad führt durch tugendhaftes Leben zur Befreiung vom Leiden."},
- {f:"Was ist die Menora?",a:["Ein Gebet im Islam","Ein siebenarmiger Leuchter im Judentum","Ein Tempel im Hinduismus","Ein Kreuz"],r:1,e:"Die Menora ist ein siebenarmiger Leuchter und eines der ältesten Symbole des Judentums."},
- {f:"Wer war Sally Perel?",a:["Ein Politiker","Ein jüdischer Überlebender, der sich als Hitlerjunge tarnte","Ein Sportler","Ein Schriftsteller"],r:1,e:"Sally Perel (1925–2023) überlebte den Holocaust verkleidet als Hitlerjunge und setzte sich zeitlebens für Toleranz ein."},
- {f:"Was ist das Hauptziel des Buddhismus?",a:["Verehrung eines Gottes","Erreichen von Reichtum","Erleuchtung und Befreiung vom Leiden","Leben nach der Tora"],r:2,e:"Im Buddhismus streben Gläubige nach Erleuchtung und Nirwana."},
- {f:"Was bedeutet 'Islam' auf Arabisch?",a:["Glaube","Hingabe an Gott","Frieden","Das Buch Gottes"],r:1,e:"Islam bedeutet wörtlich Hingabe oder Unterwerfung unter den Willen Gottes."},
+  {f:"Wie heißt die heilige Schrift des Islam?",a:["Die Tora","Die Bibel","Der Koran","Die Veden"],r:2,e:"Der Koran ist die heilige Schrift des Islam – die Offenbarungen des Propheten Mohammed."},
+  {f:"Welches Fest feiern Christen als Geburtstag Jesu?",a:["Ostern","Pfingsten","Weihnachten","Epiphanie"],r:2,e:"Weihnachten am 25. Dezember erinnert an die Geburt Jesu Christi in Bethlehem."},
+  {f:"In welcher Weltreligion gilt die Kuh als heiliges Tier?",a:["Buddhismus","Hinduismus","Judentum","Islam"],r:1,e:"Im Hinduismus gilt die Kuh als heiliges Tier – Symbol für Güte und Fürsorge."},
+  {f:"Was ist der Ramadan?",a:["Ein Pflichtgebet","Ein heiliger Fastenmonat","Ein Wallfahrtsfest","Ein Ruhetag"],r:1,e:"Der Ramadan ist ein Fastenmonat – Zeit der inneren Einkehr, des Gebets und der Gemeinschaft."},
+  {f:"Wie heißt der wöchentliche Ruhetag im Judentum?",a:["Sabbat","Ramadan","Vesak","Diwali"],r:0,e:"Der Sabbat beginnt am Freitagabend bei Sonnenuntergang und endet am Samstagabend."},
+  {f:"Welches Fest ist das große Lichterfest im Hinduismus?",a:["Holi","Diwali","Eid al-Fitr","Wesak"],r:1,e:"Diwali symbolisiert den Sieg des Lichts über die Dunkelheit."},
+  {f:"Welche Stadt ist die heiligste im Islam?",a:["Jerusalem","Istanbul","Mekka","Medina"],r:2,e:"Mekka ist die heiligste Stadt des Islam – Geburtsort Mohammeds und Ort der Kaaba."},
+  {f:"Was beschreibt der Edle Achtfache Pfad im Buddhismus?",a:["Eine Pilgerroute","Acht Götter","Weg zur Überwindung des Leidens","Acht Schriften"],r:2,e:"Der Achtfache Pfad führt durch tugendhaftes Leben zur Befreiung vom Leiden."},
+  {f:"Was ist die Menora?",a:["Ein Gebet im Islam","Ein siebenarmiger Leuchter im Judentum","Ein Tempel im Hinduismus","Ein Kreuz"],r:1,e:"Die Menora ist ein siebenarmiger Leuchter und eines der ältesten Symbole des Judentums."},
+  {f:"Wer war Sally Perel?",a:["Ein Politiker","Ein jüdischer Überlebender, der sich als Hitlerjunge tarnte","Ein Sportler","Ein Schriftsteller"],r:1,e:"Sally Perel (1925–2023) überlebte den Holocaust verkleidet als Hitlerjunge und setzte sich zeitlebens für Toleranz ein."},
+  {f:"Was ist das Hauptziel des Buddhismus?",a:["Verehrung eines Gottes","Erreichen von Reichtum","Erleuchtung und Befreiung vom Leiden","Leben nach der Tora"],r:2,e:"Im Buddhismus streben Gläubige nach Erleuchtung und Nirwana."},
+  {f:"Was bedeutet 'Islam' auf Arabisch?",a:["Glaube","Hingabe an Gott","Frieden","Das Buch Gottes"],r:1,e:"Islam bedeutet wörtlich Hingabe oder Unterwerfung unter den Willen Gottes."},
 ];
 const ROT=[
- {f:"Ein Mitschüler wird wegen seiner Religion verspottet. Was tust du?",a:["Du lachst mit.","Du schweigst.","Du verteidigst ihn.","Du gehst weg."],r:2,e:"Mutig einzustehen ist richtig. Wer schweigt oder mitmacht, macht sich mitschuldig."},
- {f:"Dein Freund behauptet, Menschen einer Herkunft seien weniger wert. Was sagst du?",a:["Du stimmst zu.","Du sagst ruhig, dass das falsch ist.","Du lachst nervös.","Du wechselst das Thema."],r:1,e:"Echte Freundschaft bedeutet auch, Fehler anzusprechen – freundlich, aber bestimmt."},
- {f:"Ein neuer Schüler sitzt allein, weil er kein Deutsch spricht. Was machst du?",a:["Du gehst weiter.","Du gehst zu ihm und nimmst Kontakt auf.","Du redest mit anderen über ihn.","Du schaust kurz hin."],r:1,e:"Ein Lächeln kann für einen Menschen in fremder Umgebung sehr viel bedeuten."},
- {f:"Dein Mitschüler isst aus religiösen Gründen kein Schweinefleisch. Jemand lacht ihn aus. Du…",a:["Lachst mit.","Sagst nichts.","Erklärst, dass religiöse Speisegebote respektiert werden sollten.","Fragst ihn laut danach."],r:2,e:"Religiöse Überzeugungen sind Teil der Persönlichkeit – sie zu respektieren ist Grundvoraussetzung."},
- {f:"Ein Gruppenmitglied möchte freitags früher gehen (Gebet). Du…",a:["Überstimmst ihn.","Hörst zu und sucht gemeinsam eine Lösung.","Ignorierst seinen Wunsch.","Beschwerst dich beim Lehrer."],r:1,e:"Gute Zusammenarbeit bedeutet, alle einzubeziehen und Kompromisse zu finden."},
- {f:"In der Bahn wird eine Frau mit Kopftuch beschimpft. Du…",a:["Schaust auf dein Handy.","Lachst nervös.","Setzt dich zu ihr und fragst, ob alles in Ordnung ist.","Steigst aus."],r:2,e:"Solidarität ist Zivilcourage. Schon ein einfaches Zeichen kann enorm entlasten."},
- {f:"Ein Klassenkamerad macht abwertende Witze über eine Religionsgemeinschaft. Du…",a:["Lachst mit.","Sagst aber nichts.","Sprichst ihn ruhig unter vier Augen an.","Meldest es sofort."],r:2,e:"Ein ruhiges Gespräch unter vier Augen ist oft wirksamer als eine öffentliche Konfrontation."},
- {f:"Jemand mag deinen Freund nicht – nur wegen seiner Religion. Du…",a:["Distanzierst dich.","Erklärst, dass du Menschen nach ihrer Persönlichkeit beurteilst.","Stimmst innerlich zu.","Fragst provokativ."],r:1,e:"Menschen nach ihrer Persönlichkeit – nicht nach Religion – zu beurteilen ist das Fundament von Respekt."},
- {f:"Jemand behauptet, Sally Perel sei feige gewesen. Wie antwortest du?",a:["Du stimmst zu.","Du erklärst, dass er als Kind ums Überleben kämpfte.","Du sagst nichts.","Du lenkst ab."],r:1,e:"Sally Perel verbarg seine Identität aus purer Not. Sein Leben widmete er der Erinnerung und Menschenwürde."},
+  {f:"Ein Mitschüler wird wegen seiner Religion verspottet. Was tust du?",a:["Du lachst mit.","Du schweigst.","Du verteidigst ihn.","Du gehst weg."],r:2,e:"Mutig einzustehen ist richtig. Wer schweigt oder mitmacht, macht sich mitschuldig."},
+  {f:"Dein Freund behauptet, Menschen einer Herkunft seien weniger wert. Was sagst du?",a:["Du stimmst zu.","Du sagst ruhig, dass das falsch ist.","Du lachst nervös.","Du wechselst das Thema."],r:1,e:"Echte Freundschaft bedeutet auch, Fehler anzusprechen – freundlich, aber bestimmt."},
+  {f:"Ein neuer Schüler sitzt allein, weil er kein Deutsch spricht. Was machst du?",a:["Du gehst weiter.","Du gehst zu ihm und nimmst Kontakt auf.","Du redest mit anderen über ihn.","Du schaust kurz hin."],r:1,e:"Ein Lächeln kann für einen Menschen in fremder Umgebung sehr viel bedeuten."},
+  {f:"Dein Mitschüler isst aus religiösen Gründen kein Schweinefleisch. Jemand lacht ihn aus. Du…",a:["Lachst mit.","Sagst nichts.","Erklärst, dass religiöse Speisegebote respektiert werden sollten.","Fragst ihn laut danach."],r:2,e:"Religiöse Überzeugungen sind Teil der Persönlichkeit – sie zu respektieren ist Grundvoraussetzung."},
+  {f:"Ein Gruppenmitglied möchte freitags früher gehen (Gebet). Du…",a:["Überstimmst ihn.","Hörst zu und sucht gemeinsam eine Lösung.","Ignorierst seinen Wunsch.","Beschwerst dich beim Lehrer."],r:1,e:"Gute Zusammenarbeit bedeutet, alle einzubeziehen und Kompromisse zu finden."},
+  {f:"In der Bahn wird eine Frau mit Kopftuch beschimpft. Du…",a:["Schaust auf dein Handy.","Lachst nervös.","Setzt dich zu ihr und fragst, ob alles in Ordnung ist.","Steigst aus."],r:2,e:"Solidarität ist Zivilcourage. Schon ein einfaches Zeichen kann enorm entlasten."},
+  {f:"Ein Klassenkamerad macht abwertende Witze über eine Religionsgemeinschaft. Du…",a:["Lachst mit.","Sagst aber nichts.","Sprichst ihn ruhig unter vier Augen an.","Meldest es sofort."],r:2,e:"Ein ruhiges Gespräch unter vier Augen ist oft wirksamer als eine öffentliche Konfrontation."},
+  {f:"Jemand mag deinen Freund nicht – nur wegen seiner Religion. Du…",a:["Distanzierst dich.","Erklärst, dass du Menschen nach ihrer Persönlichkeit beurteilst.","Stimmst innerlich zu.","Fragst provokativ."],r:1,e:"Menschen nach ihrer Persönlichkeit – nicht nach Religion – zu beurteilen ist das Fundament von Respekt."},
+  {f:"Jemand behauptet, Sally Perel sei feige gewesen. Wie antwortest du?",a:["Du stimmst zu.","Du erklärst, dass er als Kind ums Überleben kämpfte.","Du sagst nichts.","Du lenkst ab."],r:1,e:"Sally Perel verbarg seine Identität aus purer Not. Sein Leben widmete er der Erinnerung und Menschenwürde."},
 ];
 const GRUEN=[
- {t:"🎭 Rollenspiel",a:"Spiele eine Szene vor: Du hilfst einem neuen Schüler aus einem anderen Land, sich vor der Klasse vorzustellen. Zeige, wie man jemanden herzlich willkommen heißt!"},
- {t:"🎭 Rollenspiel",a:"Erkläre einem Freund, was dir an deiner Kultur oder Familientradition am meisten bedeutet. Erzähle mit echter Begeisterung!"},
- {t:"🎭 Pantomime",a:"Ohne Worte: Ein Mensch hilft einem anderen, der sich verlaufen hat – ohne gemeinsame Sprache. Verständigung ist mehr als Worte!"},
- {t:"🎭 Rollenspiel",a:"Zeige, wie du ein Gespräch mit jemandem beginnst, der sehr anders ist als du – aus einer anderen Glaubensgemeinschaft oder einem anderen Land."},
- {t:"🎭 Kreativaufgabe",a:"Formuliere in 30 Sekunden ein Respekt-Motto für eure Schule. Sprich es laut aus und erkläre kurz, was du damit meinst!"},
- {t:"🎭 Rollenspiel",a:"Spiele eine Situation vor, in der du merkst, dass du ein Vorurteil hattest – und dass es falsch war. Wie reagierst du?"},
- {t:"🎭 Emotionsaufgabe",a:"Zeige durch Körpersprache und Mimik, wie sich ein Mensch fühlt, der täglich ignoriert oder ausgeschlossen wird. Was würde dieser Person helfen?"},
- {t:"🎭 Rollenspiel",a:"Du schlichtest einen Streit: Zwei Mitschüler streiten wegen religiöser Kleidung. Tritt als Vermittler auf – ruhig, fair, respektvoll!"},
- {t:"🎭 Freie Rede",a:"Sally Perel sagte sinngemäß: Er sei der lebende Beweis, dass Frieden möglich ist. Erkläre in 2–3 Sätzen, was du persönlich damit verbindest."},
+  {t:"🎭 Rollenspiel",a:"Spiele eine Szene vor: Du hilfst einem neuen Schüler aus einem anderen Land, sich vor der Klasse vorzustellen. Zeige, wie man jemanden herzlich willkommen heißt!"},
+  {t:"🎭 Rollenspiel",a:"Erkläre einem Freund, was dir an deiner Kultur oder Familientradition am meisten bedeutet. Erzähle mit echter Begeisterung!"},
+  {t:"🎭 Pantomime",a:"Ohne Worte: Ein Mensch hilft einem anderen, der sich verlaufen hat – ohne gemeinsame Sprache. Verständigung ist mehr als Worte!"},
+  {t:"🎭 Rollenspiel",a:"Zeige, wie du ein Gespräch mit jemandem beginnst, der sehr anders ist als du – aus einer anderen Glaubensgemeinschaft oder einem anderen Land."},
+  {t:"🎭 Kreativaufgabe",a:"Formuliere in 30 Sekunden ein Respekt-Motto für eure Schule. Sprich es laut aus und erkläre kurz, was du damit meinst!"},
+  {t:"🎭 Rollenspiel",a:"Spiele eine Situation vor, in der du merkst, dass du ein Vorurteil hattest – und dass es falsch war. Wie reagierst du?"},
+  {t:"🎭 Emotionsaufgabe",a:"Zeige durch Körpersprache und Mimik, wie sich ein Mensch fühlt, der täglich ignoriert oder ausgeschlossen wird. Was würde dieser Person helfen?"},
+  {t:"🎭 Rollenspiel",a:"Du schlichtest einen Streit: Zwei Mitschüler streiten wegen religiöser Kleidung. Tritt als Vermittler auf – ruhig, fair, respektvoll!"},
+  {t:"🎭 Freie Rede",a:"Sally Perel sagte sinngemäß: Er sei der lebende Beweis, dass Frieden möglich ist. Erkläre in 2–3 Sätzen, was du persönlich damit verbindest."},
 ];
 const BLAU=[
- {t:"🤝 Teamaufgabe",a:"Nennt gemeinsam in einer Minute so viele Religionen wie möglich! Ziel: mindestens sechs."},
- {t:"🤝 Gemeinsamkeiten",a:"Jede Person nennt eine Gemeinsamkeit aller Weltreligionen. Keine Antwort darf sich wiederholen!"},
- {t:"🤝 Diskussion",a:"Was bedeutet Respekt für euch? Jede Person nennt eine eigene Definition – hört aufmerksam zu!"},
- {t:"🤝 Regelwerk",a:"Entwickelt in zwei Minuten drei Klassenregeln, die das Miteinander an eurer Schule verbessern würden."},
- {t:"🤝 Kreativaufgabe",a:"Erfindet einen kurzen Rap (2–4 Zeilen) zum Thema Respekt und Toleranz. Tragt ihn gemeinsam vor!"},
- {t:"🤝 Alltagsbeispiele",a:"Jede Person nennt ein Beispiel respektloser Behandlung im Alltag – und schlägt eine Verbesserung vor."},
- {t:"🤝 Traumschule",a:"Ihr gestaltet eine Schule, in der alle Kulturen gleichwertig sind. Einigt euch auf die drei wichtigsten Dinge!"},
- {t:"🤝 Reflexionsrunde",a:"Jeder sagt ehrlich: Gab es einen Moment, in dem ich jemanden ungerecht behandelt habe? Was würde ich heute anders machen?"},
- {t:"🤝 Sally-Perel-Frage",a:"Sally Perel überlebte, indem er seine jüdische Identität verbarg. Was bedeutet es, die eigene Identität verbergen zu müssen? Wie fühlt sich das an?"},
+  {t:"🤝 Teamaufgabe",a:"Nennt gemeinsam in einer Minute so viele Religionen wie möglich! Ziel: mindestens sechs."},
+  {t:"🤝 Gemeinsamkeiten",a:"Jede Person nennt eine Gemeinsamkeit aller Weltreligionen. Keine Antwort darf sich wiederholen!"},
+  {t:"🤝 Diskussion",a:"Was bedeutet Respekt für euch? Jede Person nennt eine eigene Definition – hört aufmerksam zu!"},
+  {t:"🤝 Regelwerk",a:"Entwickelt in zwei Minuten drei Klassenregeln, die das Miteinander an eurer Schule verbessern würden."},
+  {t:"🤝 Kreativaufgabe",a:"Erfindet einen kurzen Rap (2–4 Zeilen) zum Thema Respekt und Toleranz. Tragt ihn gemeinsam vor!"},
+  {t:"🤝 Alltagsbeispiele",a:"Jede Person nennt ein Beispiel respektloser Behandlung im Alltag – und schlägt eine Verbesserung vor."},
+  {t:"🤝 Traumschule",a:"Ihr gestaltet eine Schule, in der alle Kulturen gleichwertig sind. Einigt euch auf die drei wichtigsten Dinge!"},
+  {t:"🤝 Reflexionsrunde",a:"Jeder sagt ehrlich: Gab es einen Moment, in dem ich jemanden ungerecht behandelt habe? Was würde ich heute anders machen?"},
+  {t:"🤝 Sally-Perel-Frage",a:"Sally Perel überlebte, indem er seine jüdische Identität verbarg. Was bedeutet es, die eigene Identität verbergen zu müssen? Wie fühlt sich das an?"},
 ];
 
 let S=[],akt=0,kannW=true,extraW=false,N=2;
 
-// Frage-Pools mit Wiederholungsschutz
 const POOLS={gelb:[],rot:[],gruen:[],blau:[]};
 function resetPools(){
- POOLS.gelb=[...Array(GELB.length).keys()];
- POOLS.rot=[...Array(ROT.length).keys()];
- POOLS.gruen=[...Array(GRUEN.length).keys()];
- POOLS.blau=[...Array(BLAU.length).keys()];
+  POOLS.gelb=[...Array(GELB.length).keys()];
+  POOLS.rot=[...Array(ROT.length).keys()];
+  POOLS.gruen=[...Array(GRUEN.length).keys()];
+  POOLS.blau=[...Array(BLAU.length).keys()];
 }
 function rndFromPool(arr,pool){
- if(pool.length===0){pool.push(...Array(arr.length).keys());} // Pool auffüllen wenn leer
- const idx=Math.floor(Math.random()*pool.length);
- const cardIdx=pool.splice(idx,1)[0];
- return arr[cardIdx];
+  if(pool.length===0){pool.push(...Array(arr.length).keys());}
+  const idx=Math.floor(Math.random()*pool.length);
+  const cardIdx=pool.splice(idx,1)[0];
+  return arr[cardIdx];
 }
 
-// Antworten mischen, richtigen Index nachverfolgen
 function shuffleAnswers(card){
- const indices=[0,1,2,3];
- for(let i=indices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[indices[i],indices[j]]=[indices[j],indices[i]];}
- const shuffled=indices.map(i=>card.a[i]);
- const newRichtig=indices.indexOf(card.r);
- return {shuffled,newRichtig};
+  const indices=[0,1,2,3];
+  for(let i=indices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[indices[i],indices[j]]=[indices[j],indices[i]];}
+  const shuffled=indices.map(i=>card.a[i]);
+  const newRichtig=indices.indexOf(card.r);
+  return {shuffled,newRichtig};
 }
 
 function setGender(g){
- AVS=AVS_SETS[g];
- document.querySelectorAll('.gender-btn').forEach(b=>b.classList.toggle('active',b.dataset.g===g));
- // Standard-Avatare im Startscreen auf Gender-Default setzen
- document.querySelectorAll('.pav').forEach((el,i)=>el.textContent=AVS[i]||AVS[0]);
- document.getElementById('logoEm').textContent= g==='maennlich'?'👨':'👩';
+  AVS=AVS_SETS[g];
+  document.querySelectorAll('.gender-btn').forEach(b=>b.classList.toggle('active',b.dataset.g===g));
+  document.querySelectorAll('.pav').forEach((el,i)=>el.textContent=AVS[i]||AVS[0]);
+  document.getElementById('logoEm').textContent= g==='maennlich'?'👨':'👩';
 }
 
 function init(){ resetPools(); setN(2); }
 
-// Verfügbare Emojis für den Picker (Neutral + beide Geschlechter gemischt)
 const EMOJI_LIST=['🧑','👩','👨','🧒','👧','👦','🧓','👴','👵','🧑‍🎤','👩‍🎤','👨‍🎤','🧑‍🏫','👩‍🏫','👨‍🏫','🧑‍🎨','👩‍🎨','👨‍🎨','🧑‍🚀','👩‍🚀','👨‍🚀','🦸','🦸‍♀️','🦸‍♂️','🧙','🧙‍♀️','🧙‍♂️','🥷','🕵️','🕵️‍♀️'];
 
 function setN(n){
- N=n;
- document.querySelectorAll('.cnt').forEach((b,i)=>b.classList.toggle('active',i+1===n));
- const c=document.getElementById('pnames'); c.innerHTML='';
- ['Alex','Mia','Leo','Sophie'].slice(0,n).forEach((def,i)=>{
-   const startEmoji=AVS[i]||'🧑';
-   const d=document.createElement('div'); d.className='prow'; d.style.flexDirection='column'; d.style.alignItems='stretch'; d.style.gap='6px';
-   d.innerHTML=`
-     <div style="display:flex;align-items:center;gap:9px;">
-       <div class="pav" id="pav${i}" style="background:${FBN[i]}22;border:2px solid ${FBN[i]};cursor:pointer;" onclick="togglePicker(${i})">${startEmoji}</div>
-       <input type="text" id="p${i}" value="${def}" maxlength="12">
-     </div>
-     <div id="picker${i}" style="display:none;flex-wrap:wrap;gap:5px;padding:8px;background:var(--bg3);border-radius:10px;border:1px solid var(--border);">
-       ${EMOJI_LIST.map(em=>`<button onclick="pickEmoji(${i},'${em}')" style="background:none;border:none;font-size:22px;cursor:pointer;padding:3px;border-radius:6px;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='none'">${em}</button>`).join('')}
-     </div>`;
-   c.appendChild(d);
- });
+  N=n;
+  document.querySelectorAll('.cnt').forEach((b,i)=>b.classList.toggle('active',i+1===n));
+  const c=document.getElementById('pnames'); c.innerHTML='';
+  ['Alex','Mia','Leo','Sophie'].slice(0,n).forEach((def,i)=>{
+    const startEmoji=AVS[i]||'🧑';
+    const d=document.createElement('div'); d.className='prow'; d.style.flexDirection='column'; d.style.alignItems='stretch'; d.style.gap='6px';
+    d.innerHTML=`
+      <div style="display:flex;align-items:center;gap:9px;">
+        <div class="pav" id="pav${i}" style="background:${FBN[i]}22;border:2px solid ${FBN[i]};cursor:pointer;" onclick="togglePicker(${i})">${startEmoji}</div>
+        <input type="text" id="p${i}" value="${def}" maxlength="12">
+      </div>
+      <div id="picker${i}" style="display:none;flex-wrap:wrap;gap:5px;padding:8px;background:var(--bg3);border-radius:10px;border:1px solid var(--border);">
+        ${EMOJI_LIST.map(em=>`<button onclick="pickEmoji(${i},'${em}')" style="background:none;border:none;font-size:22px;cursor:pointer;padding:3px;border-radius:6px;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='none'">${em}</button>`).join('')}
+      </div>`;
+    c.appendChild(d);
+  });
 }
 
 function togglePicker(i){
- const p=document.getElementById('picker'+i);
- p.style.display=p.style.display==='none'?'flex':'none';
+  const p=document.getElementById('picker'+i);
+  p.style.display=p.style.display==='none'?'flex':'none';
 }
 
 function pickEmoji(i,em){
- document.getElementById('pav'+i).textContent=em;
- document.getElementById('picker'+i).style.display='none';
+  document.getElementById('pav'+i).textContent=em;
+  document.getElementById('picker'+i).style.display='none';
 }
 
 function startGame(){
- S=[];
- resetPools();
- for(let i=0;i<N;i++){
-   const v=document.getElementById('p'+i);
-   const av=document.getElementById('pav'+i)?.textContent||AVS[i];
-   S.push({name:v?.value.trim()||`Spieler ${i+1}`,av,fb:FBN[i],pts:0,pos:0,skip:false});
- }
- akt=0; kannW=true;
- showScr('gameScreen');
- renderBoard(); renderChips(); updateCur();
+  S=[];
+  resetPools();
+  for(let i=0;i<N;i++){
+    const v=document.getElementById('p'+i);
+    const av=document.getElementById('pav'+i)?.textContent||AVS[i];
+    S.push({name:v?.value.trim()||`Spieler ${i+1}`,av,fb:FBN[i],pts:0,pos:0,skip:false});
+  }
+  akt=0; kannW=true;
+  showScr('gameScreen');
+  renderBoard(); renderChips(); updateCur();
 }
 
 function showScr(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('hidden',s.id!==id)); }
 
 function renderBoard(){
- const b=document.getElementById('board'); b.innerHTML='';
- const rowSize=6; // Felder pro Reihe → 5 Zeilen × 6 Spalten = 30 Felder
- let row=null;
- FELDER.forEach((typ,i)=>{
-   if(i%rowSize===0){
-     row=document.createElement('div');
-     row.className='board-row';
-     b.appendChild(row);
-   }
-   const f=document.createElement('div');
-   f.className=`field ${typ}`; f.id=`f${i}`;
-   if(typ==='start') f.innerHTML=`<span class="fnum">START</span>`;
-   else if(typ==='ziel') f.innerHTML=`<span class="fnum">ZIEL</span>`;
-   else f.innerHTML=`<span class="fnum">${i}</span>`;
-   row.appendChild(f);
- });
- updTokens();
+  const b=document.getElementById('board'); b.innerHTML='';
+  const rowSize=6;
+  let row=null;
+  FELDER.forEach((typ,i)=>{
+    if(i%rowSize===0){
+      row=document.createElement('div');
+      row.className='board-row';
+      b.appendChild(row);
+    }
+    const f=document.createElement('div');
+    f.className=`field ${typ}`; f.id=`f${i}`;
+    if(typ==='start') f.innerHTML=`<span class="fnum">START</span>`;
+    else if(typ==='ziel') f.innerHTML=`<span class="fnum">ZIEL</span>`;
+    else f.innerHTML=`<span class="fnum">${i}</span>`;
+    row.appendChild(f);
+  });
+  updTokens();
 }
 
 function updTokens(){
- document.querySelectorAll('.token').forEach(t=>t.remove());
- S.forEach((s,i)=>{
-   const f=document.getElementById(`f${s.pos}`); if(!f)return;
-   const t=document.createElement('div'); t.className='token';
-   t.style.cssText=`background:${s.fb};right:${2+i*14}px`; t.textContent=s.av;
-   f.appendChild(t);
- });
- document.querySelectorAll('.field').forEach(f=>f.classList.remove('active-field'));
- const af=document.getElementById(`f${S[akt]?.pos}`);
- if(af) af.classList.add('active-field');
+  document.querySelectorAll('.token').forEach(t=>t.remove());
+  S.forEach((s,i)=>{
+    const f=document.getElementById(`f${s.pos}`); if(!f)return;
+    const t=document.createElement('div'); t.className='token';
+    t.style.cssText=`background:${s.fb};right:${2+i*14}px`; t.textContent=s.av;
+    f.appendChild(t);
+  });
+  document.querySelectorAll('.field').forEach(f=>f.classList.remove('active-field'));
+  const af=document.getElementById(`f${S[akt]?.pos}`);
+  if(af) af.classList.add('active-field');
 }
 
 function renderChips(){
- const bar=document.getElementById('chips'); bar.innerHTML='';
- S.forEach((s,i)=>{
-   const c=document.createElement('div');
-   c.className=`chip${i===akt?' active':''}`;
-   c.innerHTML=`<div class="chip-av">${s.av}</div><div class="chip-nm">${s.name}</div><div class="chip-sc" style="color:${s.fb}">${s.pts}</div><div class="pbar"><div class="pbar-fill" style="width:${Math.max(0,s.pts)/60*100}%;background:${s.fb}"></div></div>${s.skip?'<div class="chip-pause">⏸</div>':''}`;
-   bar.appendChild(c);
- });
+  const bar=document.getElementById('chips'); bar.innerHTML='';
+  S.forEach((s,i)=>{
+    const c=document.createElement('div');
+    c.className=`chip${i===akt?' active':''}`;
+    c.innerHTML=`<div class="chip-av">${s.av}</div><div class="chip-nm">${s.name}</div><div class="chip-sc" style="color:${s.fb}">${s.pts}</div><div class="pbar"><div class="pbar-fill" style="width:${Math.max(0,s.pts)/60*100}%;background:${s.fb}"></div></div>${s.skip?'<div class="chip-pause">⏸</div>':''}`;
+    bar.appendChild(c);
+  });
 }
 
 function updateCur(){
- const s=S[akt];
- document.getElementById('curAv').textContent=s.av;
- document.getElementById('curNm').textContent=s.name;
- document.getElementById('curSt').textContent=s.skip?'😴 Muss aussetzen…':`Feld ${s.pos} · ${s.pts} Punkte`;
- const pb=document.getElementById('curPb');
- pb.style.width=Math.max(0,s.pts)/60*100+'%'; pb.style.background=s.fb;
+  const s=S[akt];
+  document.getElementById('curAv').textContent=s.av;
+  document.getElementById('curNm').textContent=s.name;
+  document.getElementById('curSt').textContent=s.skip?'😴 Muss aussetzen…':`Feld ${s.pos} · ${s.pts} Punkte`;
+  const pb=document.getElementById('curPb');
+  pb.style.width=Math.max(0,s.pts)/60*100+'%'; pb.style.background=s.fb;
 }
 
 const DI=['','⚀','⚁','⚂','⚃','⚄','⚅'];
 function wuerfeln(){
- if(!kannW)return;
- const s=S[akt];
- if(s.skip){s.skip=false;toast(`${s.av} ${s.name} setzt diese Runde aus.`);kannW=false;setTimeout(next,1600);return;}
- kannW=false; document.getElementById('btnW').disabled=true;
- const d=document.getElementById('dice'); d.classList.add('rolling');
- setTimeout(()=>{
-   d.classList.remove('rolling');
-   const z=Math.floor(Math.random()*6)+1; d.textContent=DI[z];
-   document.getElementById('diceTxt').textContent=`${s.name} würfelt eine ${z}!`;
-   const np=Math.min(s.pos+z,FELDER.length-1);
-   animMove(s.pos,np,()=>{
-     s.pos=np; updTokens(); updateCur(); renderChips();
-     if(s.pos>=FELDER.length-1){setTimeout(()=>win(s),400);return;}
-     setTimeout(()=>{const typ=FELDER[s.pos];if(typ==='start'){kannW=true;document.getElementById('btnW').disabled=false;return;}showCard(typ);},300);
-   });
- },560);
+  if(!kannW)return;
+  const s=S[akt];
+  if(s.skip){s.skip=false;toast(`${s.av} ${s.name} setzt diese Runde aus.`);kannW=false;setTimeout(next,1600);return;}
+  kannW=false; document.getElementById('btnW').disabled=true;
+  const d=document.getElementById('dice'); d.classList.add('rolling');
+  setTimeout(()=>{
+    d.classList.remove('rolling');
+    const z=Math.floor(Math.random()*6)+1; d.textContent=DI[z];
+    document.getElementById('diceTxt').textContent=`${s.name} würfelt eine ${z}!`;
+    const np=Math.min(s.pos+z,FELDER.length-1);
+    animMove(s.pos,np,()=>{
+      s.pos=np; updTokens(); updateCur(); renderChips();
+      if(s.pos>=FELDER.length-1){setTimeout(()=>win(s),400);return;}
+      setTimeout(()=>{const typ=FELDER[s.pos];if(typ==='start'){kannW=true;document.getElementById('btnW').disabled=false;return;}showCard(typ);},300);
+    });
+  },560);
 }
 
 function animMove(from,to,cb){
- let p=from;
- (function step(){
-   if(p>=to){cb();return;} p++;
-   document.querySelectorAll('.field').forEach(f=>f.classList.remove('active-field'));
-   const f=document.getElementById(`f${p}`); if(f)f.classList.add('active-field');
-   setTimeout(step,110);
- })();
+  let p=from;
+  (function step(){
+    if(p>=to){cb();return;} p++;
+    document.querySelectorAll('.field').forEach(f=>f.classList.remove('active-field'));
+    const f=document.getElementById(`f${p}`); if(f)f.classList.add('active-field');
+    setTimeout(step,110);
+  })();
 }
 
 function showCard(typ){
- const ao=document.getElementById('aopts');
- const ad=document.getElementById('adesc');
- const ab=document.getElementById('abtns');
- const fb=document.getElementById('fb');
- const bw=document.getElementById('bweiter');
- ao.innerHTML=''; ad.style.display='none'; ab.style.display='none';
- fb.className='fb'; fb.textContent=''; bw.className='bweiter';
- document.getElementById('mbox').className=`modal-box ${typ}`;
- let k;
- if(typ==='gelb'||typ==='rot'){
-   k=rndFromPool(typ==='gelb'?GELB:ROT, typ==='gelb'?POOLS.gelb:POOLS.rot);
-   document.getElementById('mbadge').innerHTML=typ==='gelb'?'🌟 Wissensfrage':'💬 Soziale Situation';
-   document.getElementById('mqst').textContent=k.f;
-   ao.style.display='flex';
-   const {shuffled,newRichtig}=shuffleAnswers(k);
-   shuffled.forEach((a,i)=>{
-     const btn=document.createElement('button'); btn.className='abtn';
-     btn.textContent=`${'ABCD'[i]}) ${a}`; btn.onclick=()=>antwort(i,newRichtig,k.e); ao.appendChild(btn);
-   });
- } else {
-   k=rndFromPool(typ==='gruen'?GRUEN:BLAU, typ==='gruen'?POOLS.gruen:POOLS.blau);
-   document.getElementById('mbadge').innerHTML=typ==='gruen'?'🎭 Aktionskarte':'🤝 Teamaufgabe';
-   document.getElementById('mqst').textContent=k.t;
-   ad.textContent=k.a; ad.style.display='block'; ab.style.display='flex'; ao.style.display='none';
- }
- document.getElementById('modal').classList.remove('hidden');
+  const ao=document.getElementById('aopts');
+  const ad=document.getElementById('adesc');
+  const ab=document.getElementById('abtns');
+  const fb=document.getElementById('fb');
+  const bw=document.getElementById('bweiter');
+  ao.innerHTML=''; ad.style.display='none'; ab.style.display='none';
+  fb.className='fb'; fb.textContent=''; bw.className='bweiter';
+  document.getElementById('mbox').className=`modal-box ${typ}`;
+  let k;
+  if(typ==='gelb'||typ==='rot'){
+    k=rndFromPool(typ==='gelb'?GELB:ROT, typ==='gelb'?POOLS.gelb:POOLS.rot);
+    document.getElementById('mbadge').innerHTML=typ==='gelb'?'🌟 Wissensfrage':'💬 Soziale Situation';
+    document.getElementById('mqst').textContent=k.f;
+    ao.style.display='flex';
+    const {shuffled,newRichtig}=shuffleAnswers(k);
+    shuffled.forEach((a,i)=>{
+      const btn=document.createElement('button'); btn.className='abtn';
+      btn.textContent=`${'ABCD'[i]}) ${a}`; btn.onclick=()=>antwort(i,newRichtig,k.e); ao.appendChild(btn);
+    });
+  } else {
+    k=rndFromPool(typ==='gruen'?GRUEN:BLAU, typ==='gruen'?POOLS.gruen:POOLS.blau);
+    document.getElementById('mbadge').innerHTML=typ==='gruen'?'🎭 Aktionskarte':'🤝 Teamaufgabe';
+    document.getElementById('mqst').textContent=k.t;
+    ad.textContent=k.a; ad.style.display='block'; ab.style.display='flex'; ao.style.display='none';
+  }
+  document.getElementById('modal').classList.remove('hidden');
 }
 
 function antwort(i,r,e){
- const bs=document.querySelectorAll('.abtn'); bs.forEach(b=>b.disabled=true);
- const ok=i===r; bs[i].classList.add(ok?'correct':'wrong'); if(!ok)bs[r].classList.add('correct');
- chgPts(ok);
- const fb=document.getElementById('fb');
- fb.textContent=ok?`✅ Richtig! ${e}`:`❌ Leider falsch. ${e}`;
- fb.className=`fb show ${ok?'pos':'neg'}`; document.getElementById('bweiter').className='bweiter show';
+  const bs=document.querySelectorAll('.abtn'); bs.forEach(b=>b.disabled=true);
+  const ok=i===r; bs[i].classList.add(ok?'correct':'wrong'); if(!ok)bs[r].classList.add('correct');
+  chgPts(ok);
+  const fb=document.getElementById('fb');
+  fb.textContent=ok?`✅ Richtig! ${e}`:`❌ Leider falsch. ${e}`;
+  fb.className=`fb show ${ok?'pos':'neg'}`; document.getElementById('bweiter').className='bweiter show';
 }
 
 function doAction(ok){
- chgPts(ok); document.getElementById('abtns').style.display='none';
- const fb=document.getElementById('fb');
- fb.textContent=ok?'✅ Super gemacht! +5 Punkte':'❌ Kein Problem! –5 Punkte';
- fb.className=`fb show ${ok?'pos':'neg'}`; document.getElementById('bweiter').className='bweiter show';
+  chgPts(ok); document.getElementById('abtns').style.display='none';
+  const fb=document.getElementById('fb');
+  fb.textContent=ok?'✅ Super gemacht! +5 Punkte':'❌ Kein Problem! –5 Punkte';
+  fb.className=`fb show ${ok?'pos':'neg'}`; document.getElementById('bweiter').className='bweiter show';
 }
 
 function chgPts(ok){
- const s=S[akt]; const prev=s.pts; s.pts+=ok?5:-5;
- if(s.pts<=-5){s.skip=true;s.pts=-5;toast(`${s.av} ${s.name} muss aussetzen!`);}
- if([10,20,30,40,50].some(m=>s.pts>=m&&prev<m)){extraW=true;document.getElementById('extra').classList.add('show');toast(`🎁 ${s.name} bekommt einen Extra-Wurf!`);}
- renderChips(); updateCur();
+  const s=S[akt]; const prev=s.pts; s.pts+=ok?5:-5;
+  if(s.pts<=-5){s.skip=true;s.pts=-5;toast(`${s.av} ${s.name} muss aussetzen!`);}
+  if([10,20,30,40,50].some(m=>s.pts>=m&&prev<m)){extraW=true;document.getElementById('extra').classList.add('show');toast(`🎁 ${s.name} bekommt einen Extra-Wurf!`);}
+  renderChips(); updateCur();
 }
 
 function closeModal(){
- document.getElementById('modal').classList.add('hidden');
- if(extraW){extraW=false;document.getElementById('extra').classList.remove('show');kannW=true;document.getElementById('btnW').disabled=false;document.getElementById('diceTxt').textContent='🎁 Extra-Wurf – nochmal!';return;}
- next();
+  document.getElementById('modal').classList.add('hidden');
+  if(extraW){extraW=false;document.getElementById('extra').classList.remove('show');kannW=true;document.getElementById('btnW').disabled=false;document.getElementById('diceTxt').textContent='🎁 Extra-Wurf – nochmal!';return;}
+  next();
 }
 
 function next(){
- akt=(akt+1)%S.length; kannW=true;
- document.getElementById('btnW').disabled=false;
- document.getElementById('dice').textContent='🎲'; document.getElementById('diceTxt').textContent='';
- document.getElementById('extra').classList.remove('show');
- updateCur(); renderChips(); updTokens();
- toast(`${S[akt].av} ${S[akt].name} ist dran!`);
+  akt=(akt+1)%S.length; kannW=true;
+  document.getElementById('btnW').disabled=false;
+  document.getElementById('dice').textContent='🎲'; document.getElementById('diceTxt').textContent='';
+  document.getElementById('extra').classList.remove('show');
+  updateCur(); renderChips(); updTokens();
+  toast(`${S[akt].av} ${S[akt].name} ist dran!`);
 }
 
 function win(s){
- showScr('winScreen');
- document.getElementById('winN').textContent=`${s.av} ${s.name}`;
- document.getElementById('winS').textContent=`${s.pts} Punkte`;
- const cc=document.getElementById('confettiC'); cc.innerHTML='';
- const cols=['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#f093fb','#fff'];
- for(let i=0;i<100;i++){
-   const el=document.createElement('div'); el.className='cfto';
-   el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};width:${Math.random()*12+5}px;height:${Math.random()*12+5}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${Math.random()*2+2}s;animation-delay:${Math.random()*2.5}s;`;
-   cc.appendChild(el);
- }
+  showScr('winScreen');
+  document.getElementById('winN').textContent=`${s.av} ${s.name}`;
+  document.getElementById('winS').textContent=`${s.pts} Punkte`;
+  const cc=document.getElementById('confettiC'); cc.innerHTML='';
+  const cols=['#FFD93D','#FF6B6B','#6BCB77','#4D96FF','#f093fb','#fff'];
+  for(let i=0;i<100;i++){
+    const el=document.createElement('div'); el.className='cfto';
+    el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};width:${Math.random()*12+5}px;height:${Math.random()*12+5}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${Math.random()*2+2}s;animation-delay:${Math.random()*2.5}s;`;
+    cc.appendChild(el);
+  }
 }
 
 function resetGame(){ document.getElementById('confettiC').innerHTML=''; showScr('startScreen'); }
@@ -817,6 +802,5 @@ function toggleRules(){ document.getElementById('rulesModal').classList.toggle('
 
 init();
 </script>
-
 </body>
 </html>
